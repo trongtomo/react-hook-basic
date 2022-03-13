@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.scss";
-
+import Navigation from "./views/Navigation";
 const App = () => {
   let name = "trong";
   let number = 69;
@@ -8,6 +8,7 @@ const App = () => {
   let link = "https://duckduckgo.com/";
   return (
     <div className="App">
+      <Navigation />
       {/* {console.log("Obj:", obj)} */}
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
