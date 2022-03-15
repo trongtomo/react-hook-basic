@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.scss";
 import Navigation from "./views/Navigation";
-import {useState} from "react";
+import {useState,useEffect} from "react";
 import Todo from "./views/Todo";
 const App = () => {
   const deleteDataTodo =(id)=>{
@@ -34,8 +34,12 @@ const App = () => {
     {id:'todo3',title:'Sleep',type:'Activities'},
     {id:'todo4',title:'Eat',type:'Activities'}
   ]);
+  //giao dien re render se goi use effect
+  useEffect(()=>{
+    //giao dien re render se goi use effect
+    console.log("Use effect")
+  });
   let number = 69;
-  let link = "https://duckduckgo.com/";
   //re-render
   // for lap theo index, map tra? ra array moi
   return (
@@ -53,12 +57,12 @@ const App = () => {
         deleteDataTodo={deleteDataTodo}
         />
          <Todo
-        todos={todos.filter(item=>item.type=="Work")}
+        todos={todos.filter(item=>item.type==="Work")}
         title={`Work Type`}
         deleteDataTodo={deleteDataTodo}
         />
         <Todo
-        todos={todos.filter(item=>item.type=="Activities")}
+        todos={todos.filter(item=>item.type==="Activities")}
         title={`Activities Type`}
         deleteDataTodo={deleteDataTodo}
         />
