@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.scss";
 import Navigation from "./views/Navigation";
 import {useState} from "react";
+import Todo from "./views/Todo";
 const App = () => {
   const handleOnClick =() =>{
     if(!address) {
@@ -38,13 +39,10 @@ const App = () => {
         <h1>
           Hello {name} - {number}
         </h1>
-        <div className="todos-container">
-          {todos.map(todo =>{
-            return(
-              <li className="todos-child" key={todo.id}>{todo.title}</li>
-            )
-          })}
-        </div>
+        <Todo
+        // ten props = giatri
+        todos={todos}
+        />
         <input type="text" value={address} onChange={(event) =>handleOnChangeInput(event)}/>
         <button type="submit" onClick={(event)=>handleOnClick(event)}>Click me</button>
       </header>
