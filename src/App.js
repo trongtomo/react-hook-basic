@@ -4,6 +4,11 @@ import Navigation from "./views/Navigation";
 import {useState} from "react";
 import Todo from "./views/Todo";
 const App = () => {
+  const deleteDataTodo =(id)=>{
+    let currentTodos= todos
+    currentTodos=currentTodos.filter(item=>item.id!==id)
+    setTodos(currentTodos)
+  }
   const handleOnClick =() =>{
     if(!address) {
       alert("empty output")
@@ -12,7 +17,8 @@ const App = () => {
 
     //hook not merge state
     //... spread synstax
-    let newTodo={id:'abc',title:address, type:"Work"}
+    let ids=Math.floor(Math.random() * 1000);
+    let newTodo={id:ids,title:address, type:"Work"}
     setTodos([...todos,newTodo])
     setAddress("");
   }
@@ -26,7 +32,7 @@ const App = () => {
     {id:'todo1', title:'Homework',type:'Work'},
     {id:'todo2',title:'Work',type:'Work'},
     {id:'todo3',title:'Sleep',type:'Activities'},
-    {id:'todo3',title:'Eat',type:'Activities'}
+    {id:'todo4',title:'Eat',type:'Activities'}
   ]);
   let number = 69;
   let link = "https://duckduckgo.com/";
@@ -44,14 +50,17 @@ const App = () => {
         // ten props = giatri
         todos={todos}
         title={"All title"}
+        deleteDataTodo={deleteDataTodo}
         />
          <Todo
         todos={todos.filter(item=>item.type=="Work")}
         title={`Work Type`}
+        deleteDataTodo={deleteDataTodo}
         />
         <Todo
         todos={todos.filter(item=>item.type=="Activities")}
         title={`Activities Type`}
+        deleteDataTodo={deleteDataTodo}
         />
         <input type="text" value={address} onChange={(event) =>handleOnChangeInput(event)}/>
         <button type="submit" onClick={(event)=>handleOnClick(event)}>Click me</button>
