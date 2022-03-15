@@ -35,10 +35,15 @@ const App = () => {
     {id:'todo4',title:'Eat',type:'Activities'}
   ]);
   //giao dien re render se goi use effect
+  //component did update
   useEffect(()=>{
     //giao dien re render se goi use effect
-    console.log("Use effect")
-  });
+    console.log("Use effect address")
+  },[address]);
+
+  useEffect(()=>{
+    console.log("Use effect todos")
+  },[todos]);
   let number = 69;
   //re-render
   // for lap theo index, map tra? ra array moi
