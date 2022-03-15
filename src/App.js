@@ -2,6 +2,9 @@ import logo from "./logo.svg";
 import "./App.scss";
 import Navigation from "./views/Navigation";
 const App = () => {
+  const handleOnClick =() =>{
+    alert("Clicked!")
+  }
   let name = "trong";
   let number = 69;
   let obj = { name: "Trong", id: "123" };
@@ -20,6 +23,7 @@ const App = () => {
           </a>
         </h1>
         <p>{JSON.stringify(obj)}</p>
+        <button type="submit" onClick={(event)=>handleOnClick(event)}>Click me</button>
       </header>
     </div>
   );
