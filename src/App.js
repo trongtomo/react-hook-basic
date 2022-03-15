@@ -3,6 +3,7 @@ import "./App.scss";
 import Navigation from "./views/Navigation";
 import {useState,useEffect} from "react";
 import Todo from "./views/Todo";
+import Covid from "./views/Covid";
 const App = () => {
   const deleteDataTodo =(id)=>{
     let currentTodos= todos
@@ -38,11 +39,11 @@ const App = () => {
   //component did update
   useEffect(()=>{
     //giao dien re render se goi use effect
-    console.log("Use effect address")
+    // console.log("Use effect address")
   },[address]);
 
   useEffect(()=>{
-    console.log("Use effect todos")
+    // console.log("Use effect todos")
   },[todos]);
   let number = 69;
   //re-render
@@ -55,7 +56,8 @@ const App = () => {
         <h1>
           Hello {name} - {number}
         </h1>
-        <Todo
+      <Covid/>
+        {/* <Todo
         // ten props = giatri
         todos={todos}
         title={"All title"}
@@ -70,9 +72,9 @@ const App = () => {
         todos={todos.filter(item=>item.type==="Activities")}
         title={`Activities Type`}
         deleteDataTodo={deleteDataTodo}
-        />
+        /> */}
         <input type="text" value={address} onChange={(event) =>handleOnChangeInput(event)}/>
-        <button type="submit" onClick={(event)=>handleOnClick(event)}>Click me</button>
+        {/* <button type="submit" onClick={(event)=>handleOnClick(event)}>Click me</button> */}
       </header>
     </div>
   );
