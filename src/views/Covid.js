@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
+
 const Covid = () => {
+  const [loading, setLoading] = useState(true);
   const [dataCovid, setdataCovid] = useState([]);
   //= componentDidMount()
-  useEffect(() => {
-    async function fectchData() {
+  useEffect(async () => {
+    setTimeout(async () => {
       let res = await axios.get(
         "https://api.covid19api.com/country/vietnam?from=2022-03-13T00%3A00%3A00Z&to=2022-03-17T00%3A00%3A00Z"
       );
@@ -19,9 +21,8 @@ const Covid = () => {
         data = data.reverse();
       }
       setdataCovid(data);
-      console.log("check res", res);
-    }
-    fectchData();
+      setLoading(false);
+    }, 2000);
   }, []);
   return (
     <table id="customers">
@@ -36,7 +37,8 @@ const Covid = () => {
         </tr>
       </thead>
       <tbody>
-        {dataCovid &&
+        {loading === false &&
+          dataCovid &&
           dataCovid.length > 0 &&
           dataCovid.map((item) => {
             return (
@@ -49,6 +51,11 @@ const Covid = () => {
               </tr>
             );
           })}
+        {loading === true && (
+          <tr>
+            <td colSpan="5">Loading...</td>
+          </tr>
+        )}
       </tbody>
     </table>
   );
