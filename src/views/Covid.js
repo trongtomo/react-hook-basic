@@ -1,34 +1,14 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import moment from "moment";
+import useFetch from "../customize/fetch";
 
 const Covid = () => {
-  const [isLoading, setisLoading] = useState(true);
-  const [dataCovid, setdataCovid] = useState([]);
-  const [isError, setisError] = useState(false);
-  //= componentDidMount()
-  useEffect(async () => {
-    try {
-      let res = await axios.get(
-        "https://api.covid19api.com/country/vietnam?from=2022-03-13T00%3A00%3A00Z&to=2022-03-17T00%3A00%3A00Z"
-      );
-      // res && res.data la dieu kien ? tra ve true : tra ve false
-      let data = res && res.data ? res.data : [];
-      if (data && data.length > 0) {
-        data.map((item) => {
-          item.Date = moment(item.Date).format("DD/MM/YYYY");
-          return item;
-        });
-        data = data.reverse();
-      }
-      setdataCovid(data);
-      setisLoading(false);
-      setisError(false);
-    } catch (error) {
-      setisError(true);
-      setisLoading(false);
-    }
-  }, []);
+  const {
+    data: dataCovid,
+    isLoading,
+    isError,
+  } = useFetch(
+    "https://api.covid19api.com/country/vietnam?from=2022-03-13T00%3A00%3A00Z&to=2022-03-17T00%3A00%3A00Z"
+  );
   return (
     <table id="customers">
       {console.log("data Covid", dataCovid)}
