@@ -3,11 +3,12 @@ import axios from "axios";
 import moment from "moment";
 
 const Covid = () => {
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setisLoading] = useState(true);
   const [dataCovid, setdataCovid] = useState([]);
+  const [isError, setisError] = useState(false);
   //= componentDidMount()
   useEffect(async () => {
-    setTimeout(async () => {
+    try {
       let res = await axios.get(
         "https://api.covid19api.com/country/vietnam?from=2022-03-13T00%3A00%3A00Z&to=2022-03-17T00%3A00%3A00Z"
       );
@@ -21,8 +22,12 @@ const Covid = () => {
         data = data.reverse();
       }
       setdataCovid(data);
-      setLoading(false);
-    }, 2000);
+      setisLoading(false);
+      setisError(false);
+    } catch (error) {
+      setisError(true);
+      setisLoading(false);
+    }
   }, []);
   return (
     <table id="customers">
@@ -37,7 +42,8 @@ const Covid = () => {
         </tr>
       </thead>
       <tbody>
-        {loading === false &&
+        {isError === false &&
+          isLoading === false &&
           dataCovid &&
           dataCovid.length > 0 &&
           dataCovid.map((item) => {
@@ -51,9 +57,14 @@ const Covid = () => {
               </tr>
             );
           })}
-        {loading === true && (
+        {isLoading === true && (
           <tr>
             <td colSpan="5">Loading...</td>
+          </tr>
+        )}
+        {isError === true && (
+          <tr>
+            <td colSpan="5">Sumting wrong</td>
           </tr>
         )}
       </tbody>
