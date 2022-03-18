@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 class Countdown extends React.Component {
   state = {
-    count: 10,
+    count: 20,
   };
 
   //chay khi render(), moi lan render chay thi chay ham setstate chu ko chay lai ca function
@@ -25,8 +25,21 @@ class Countdown extends React.Component {
     return <div>{this.state.count}</div>;
   }
 }
-
-const newCountDown = () => {
-  return <div>New Count</div>;
+// class # hook, class 1 cau dk, hook phai kiem tra thay doi thuong xuyen ** bien count
+const NewCountDown = (props) => {
+  const [count, setCount] = useState(10);
+  useEffect(() => {
+    if (count === 0) {
+      props.onTimeup();
+      return;
+    }
+    let timer = setInterval(() => {
+      setCount(count - 1);
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [count]);
+  return <div>Tuan blowjob {count} time</div>;
 };
-export { newCountDown, Countdown };
+export { NewCountDown, Countdown };

@@ -4,7 +4,7 @@ import Navigation from "./views/Navigation";
 import { useState, useEffect } from "react";
 import Todo from "./views/Todo";
 import Covid from "./views/Covid";
-import { Countdown, newCountDown } from "./views/Countdown";
+import { Countdown, NewCountDown } from "./views/Countdown";
 const App = () => {
   const onTimeup = () => {
     alert("Tuan oc cho");
@@ -57,14 +57,14 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <Navigation />
+
         <img src={logo} className="App-logo" alt="logo" />
         <h1>
           Hello {name} - {number}
         </h1>
-        <newCountDown />
+        <NewCountDown onTimeup={onTimeup} />
         <Countdown onTimeup={onTimeup} />
         <Covid />
-
         <input
           type="text"
           value={address}
