@@ -13,6 +13,9 @@ const Navigaton = () => {
       <NavLink activeClassName="active1" to="/todo">
         Todo App
       </NavLink>
+      <NavLink activeClassName="active1" to="/blog">
+        Blog App
+      </NavLink>
       <NavLink activeClassName="active1" to="/secret">
         Secret
       </NavLink>

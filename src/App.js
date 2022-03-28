@@ -4,6 +4,8 @@ import Navigation from "./views/Navigation";
 import { useState, useEffect } from "react";
 import Todo from "./views/Todo";
 import Covid from "./views/Covid";
+import Blog from "./views/Blog";
+import DetailBlog from "./views/DetailBlog";
 import { Countdown, NewCountDown } from "./views/Countdown";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const App = () => {
@@ -59,7 +61,6 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <Navigation />
-
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <Switch>
@@ -85,6 +86,12 @@ const App = () => {
             <button type="button" onClick={(event) => handleOnClick(event)}>
               Click Me{" "}
             </button>
+          </Route>
+          <Route path="/blog" exact>
+            <Blog />
+          </Route>
+          <Route path="/blog/:id">
+            <DetailBlog />
           </Route>
         </Switch>
       </div>

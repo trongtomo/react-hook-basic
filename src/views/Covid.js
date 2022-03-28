@@ -13,7 +13,8 @@ const Covid = () => {
     isError,
   } = useFetch(
     //"https://api.covid19api.com/country/vietnam?from=2022-03-13T00%3A00%3A00Z&to=2022-03-17T00%3A00%3A00Z"
-    `https://api.covid19api.com/country/vietnam?from=${priorDate}&to=${today}`
+    `https://api.covid19api.com/country/vietnam?from=${priorDate}&to=${today}`,
+    true
   );
   return (
     <div style={{ background: "#282c34", color: "white" }}>
