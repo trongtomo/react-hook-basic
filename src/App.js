@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Todo from "./views/Todo";
 import Covid from "./views/Covid";
 import Blog from "./views/Blog";
+import AddNewBlog from "./views/AddNewBlog";
 import DetailBlog from "./views/DetailBlog";
 import { Countdown, NewCountDown } from "./views/Countdown";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -92,6 +93,9 @@ const App = () => {
           </Route>
           <Route path="/blog/:id">
             <DetailBlog />
+          </Route>
+          <Route path="/addnewblog/">
+            <AddNewBlog />
           </Route>
         </Switch>
       </div>
