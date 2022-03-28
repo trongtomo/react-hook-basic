@@ -36,7 +36,7 @@ const useFetch = (url, isCovidData) => {
     }
     setTimeout(() => {
       fetchData();
-    }, 3000);
+    }, 2000);
     return () => {
       ourRequest.cancel();
     };
