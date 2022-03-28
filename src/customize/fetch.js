@@ -7,9 +7,13 @@ const useFetch = (url) => {
   const [isError, setisError] = useState(false);
 
   useEffect(() => {
-    try {
-      async function fetchData() {
-        let res = await axios.get(url);
+    const ourRequest = axios.CancelToken.source(); // token
+
+    async function fetchData() {
+      try {
+        let res = await axios.get(url, {
+          cancelToken: ourRequest.token,
+        });
         // res && res.data la dieu kien ? tra ve true : tra ve false
         let data = res && res.data ? res.data : [];
         if (data && data.length > 0) {
@@ -22,12 +26,21 @@ const useFetch = (url) => {
         setData(data);
         setisLoading(false);
         setisError(false);
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log("rq canceled", error.message);
+        } else {
+          setisError(true);
+          setisLoading(false);
+        }
       }
-      fetchData();
-    } catch (error) {
-      setisError(true);
-      setisLoading(false);
     }
+    setTimeout(() => {
+      fetchData();
+    }, 3000);
+    return () => {
+      ourRequest.cancel();
+    };
   }, [url]);
   return {
     data,

@@ -21,6 +21,12 @@ class Countdown extends React.Component {
       }
     }
   }
+  componentWillUnmount() {
+    if (this.timer) {
+      this.props.onTimeup();
+      clearInterval(this.timer);
+    }
+  }
   render() {
     return <div>{this.state.count}</div>;
   }
