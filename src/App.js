@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Todo from "./views/Todo";
 import Covid from "./views/Covid";
 import { Countdown, NewCountDown } from "./views/Countdown";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const App = () => {
   const onTimeup = () => {
     alert("Tuan oc cho");
@@ -54,24 +55,40 @@ const App = () => {
   //re-render
   // for lap theo index, map tra? ra array moi
   return (
-    <div className="App">
-      <header className="App-header">
-        <Navigation />
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Navigation />
 
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>
-          Hello {name} - {number}
-        </h1>
-        <NewCountDown onTimeup={onTimeup} />
-        <Countdown onTimeup={onTimeup} />
-        <Covid />
-        <input
-          type="text"
-          value={address}
-          onChange={(event) => handleOnChangeInput(event)}
-        />
-      </header>
-    </div>
+          <img src={logo} className="App-logo" alt="logo" />
+        </header>
+        <Switch>
+          <Route path="/" exact>
+            <Covid />
+          </Route>
+          <Route path="/timer">
+            <NewCountDown onTimeup={onTimeup} />
+            <span>---------------</span>
+            <Countdown onTimeup={onTimeup} />
+          </Route>
+          <Route path="/todo">
+            <Todo
+              todos={todos}
+              title={"All todo"}
+              deleteDataTodo={deleteDataTodo}
+            />
+            <input
+              type="text"
+              value={address}
+              onChange={(event) => handleOnChangeInput(event)}
+            />
+            <button type="button" onClick={(event) => handleOnClick(event)}>
+              Click Me{" "}
+            </button>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 };
 export default App;

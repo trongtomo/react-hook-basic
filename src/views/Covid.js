@@ -2,8 +2,8 @@ import moment from "moment";
 import useFetch from "../customize/fetch";
 
 const Covid = () => {
-  const today = new Date(new Date().setHours(0, 0, 0, 0));
-  const priorDate = moment().subtract(30, "days");
+  const today = moment().startOf("day");
+  const priorDate = today.subtract(31, "days");
   const {
     data: dataCovid,
     isLoading,
@@ -13,44 +13,46 @@ const Covid = () => {
     `https://api.covid19api.com/country/vietnam?from=${priorDate.toISOString()}&to=${today.toISOString()}`
   );
   return (
-    <table id="customers">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Confirmed</th>
-          <th>Active</th>
-          <th>Deaths</th>
-          <th>Recovered</th>
-        </tr>
-      </thead>
-      <tbody>
-        {isError === false &&
-          isLoading === false &&
-          dataCovid &&
-          dataCovid.length > 0 &&
-          dataCovid.map((item) => {
-            return (
-              <tr key={item.ID}>
-                <td>{item.Date}</td>
-                <td>{item.Confirmed}</td>
-                <td>{item.Active}</td>
-                <td>{item.Deaths}</td>
-                <td>{item.Recovered}</td>
-              </tr>
-            );
-          })}
-        {isLoading === true && (
+    <div style={{ background: "#282c34", color: "white" }}>
+      <table id="customers">
+        <thead>
           <tr>
-            <td colSpan="5">Loading...</td>
+            <th>Date</th>
+            <th>Confirmed</th>
+            <th>Active</th>
+            <th>Deaths</th>
+            <th>Recovered</th>
           </tr>
-        )}
-        {isError === true && (
-          <tr>
-            <td colSpan="5">Sumting wrong</td>
-          </tr>
-        )}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {isError === false &&
+            isLoading === false &&
+            dataCovid &&
+            dataCovid.length > 0 &&
+            dataCovid.map((item) => {
+              return (
+                <tr key={item.ID}>
+                  <td>{item.Date}</td>
+                  <td>{item.Confirmed}</td>
+                  <td>{item.Active}</td>
+                  <td>{item.Deaths}</td>
+                  <td>{item.Recovered}</td>
+                </tr>
+              );
+            })}
+          {isLoading === true && (
+            <tr>
+              <td colSpan="5">Loading...</td>
+            </tr>
+          )}
+          {isError === true && (
+            <tr>
+              <td colSpan="5">Sumting wrong</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
   );
 };
 export default Covid;
