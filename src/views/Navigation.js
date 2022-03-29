@@ -17,7 +17,7 @@ const Navigaton = () => {
         Blog App
       </NavLink>
       <NavLink activeClassName="active1" to="/secret">
-        Secret
+        Youtube
       </NavLink>
     </div>
   );

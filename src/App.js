@@ -9,6 +9,7 @@ import AddNewBlog from "./views/AddNewBlog";
 import NotFound from "./views/NotFound";
 import DetailBlog from "./views/DetailBlog";
 import { Countdown, NewCountDown } from "./views/Countdown";
+import YoutubeSearch from "./views/YoutubeSearch";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const App = () => {
   const onTimeup = () => {
@@ -97,6 +98,9 @@ const App = () => {
           </Route>
           <Route path="/addnewblog/">
             <AddNewBlog />
+          </Route>
+          <Route path="/secret">
+            <YoutubeSearch />
           </Route>
           <Route path="*">
             <NotFound />
